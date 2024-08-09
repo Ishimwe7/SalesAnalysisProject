@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<div class="dashboard-container">
+  <h1 class="dashboard-title">Welcome to the Sales Analyst</h1>
+  <p class="dashboard-subtitle">
+    Analyze and visualize your sales data with ease.
+  </p>
+  <p class="dashboard-description">
+    Upload your sales data, view key metrics, and gain insights into customer
+    behavior.
+  </p>
+  <a class="dashboard-btn" href="/upload" role="button">Get Started</a>
+  <img
+    src="{{ url_for('static', filename='images/sales_chart.png') }}"
+    alt="Sales chart"
+    class="dashboard-image"
+  />
+</div>
+{% endblock %}

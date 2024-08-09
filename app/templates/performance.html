@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<h2>Sales Performance</h2>
+<div class="card-deck">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Total Sales</h5>
+      <p class="card-text">${{ total_sales }}</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Average Sales</h5>
+      <p class="card-text">${{ average_sales }}</p>
+    </div>
+  </div>
+</div>
+<h3>Top Selling Products</h3>
+<ul class="list-group">
+  {% for product, sales in top_selling_products.items() %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ product }}
+    <span class="badge badge-primary badge-pill">${{ sales }}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

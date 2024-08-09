@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %}
+<h2>Sales Dashboard</h2>
+<div>
+  <h3>Monthly Sales</h3>
+  {{ bar_chart|safe }}
+</div>
+<div>
+  <h3>Sales Trends</h3>
+  {{ line_chart|safe }}
+</div>
+<div>
+  <h3>Product Category Distribution</h3>
+  {{ pie_chart|safe }}
+</div>
+{% endblock %}

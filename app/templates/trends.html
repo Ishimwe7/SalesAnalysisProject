@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% block content %}
+<h2 style="padding-left: 20px">Sales Trend Prediction</h2>
+<div>
+  <h3>Sales Trends</h3>
+  {{ trend_chart|safe }}
+</div>
+{% endblock %}

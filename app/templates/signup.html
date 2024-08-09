@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title%} Registration {% endblock%} {% block
+content %}
+<h2>Sign Up</h2>
+<form method="post">
+  <div class="input-group">
+    <label for="email">Email: </label>
+    <input type="email" class="form-control" id="email" name="email" required />
+  </div>
+  <div class="input-group">
+    <label for="names">Names: </label>
+    <input type="text" class="form-control" id="names" name="names" required />
+  </div>
+  <div class="input-group">
+    <label for="password">Password: </label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      required
+    />
+  </div>
+  <div class="input-group">
+    <label for="password">Confirm Password: </label>
+    <input
+      type="password"
+      class="form-control"
+      id="confirm-password"
+      name="confirm-password"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+  <p>
+    Already have an account?
+    <a class="sign-red" href="{{ url_for('auth.login') }}">Login</a>
+  </p>
+</form>
+{% endblock %}
