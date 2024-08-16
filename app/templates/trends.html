@@ -1,7 +1,9 @@
 {% extends "base.html" %} {% block content %}
-<h2 style="padding-left: 20px">Sales Trend Prediction</h2>
-<div>
-  <h3>Sales Trends</h3>
-  {{ trend_chart|safe }}
+<div class="trends">
+  <h2 class="page-title">Sales Trend Prediction</h2>
+  <div>
+    <!-- <h3 style="text-align: left; margin-left: 30px">Sales Trends</h3> -->
+    {{ trend_chart|safe }}
+  </div>
 </div>
 {% endblock %}

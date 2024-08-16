@@ -3,18 +3,19 @@ from flask_login import UserMixin
 from app import db,login_manager
 
 class SalesData(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    transaction_id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    product = db.Column(db.String(100), nullable=False)
+    product_id = db.Column(db.String(100), nullable=False)
+    customer_id = db.Column(db.String(100), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    total = db.Column(db.Float, nullable=False)
+    total_amount = db.Column(db.Float, nullable=False)
 
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
     names = db.Column(db.String(100), nullable=False)
+    profile_image = db.Column(db.String(100), nullable=True)
     password_hash = db.Column(db.String(100), nullable=False)
 
     def set_password(self, password):

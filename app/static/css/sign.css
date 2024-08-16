@@ -3,7 +3,11 @@
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #e63462;;
+    color: black;
+}
+
+.auth-page{
+    margin-top: 130px;
 }
 
 form {
@@ -38,7 +42,7 @@ form {
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color:  #c6657f;;
+    background-color:  black;
     border: none;
     color: #fff;
     font-size: 16px;
@@ -47,9 +51,9 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #f00f4b;;
-}
+/* button[type="submit"]:hover {
+    
+} */
 
 p {
     text-align: center;

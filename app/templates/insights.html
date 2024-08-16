@@ -1,7 +1,9 @@
 {% extends "base.html" %} {% block content %}
-<h2>Customer Insights</h2>
-<div>
-  <h3>Purchase Frequency</h3>
-  {{ purchase_frequency_chart|safe }}
+<div class="insights">
+  <h2 class="page-title">Customer Insights</h2>
+  <div>
+    <!-- <h3>Purchase Frequency</h3> -->
+    {{ purchase_frequency_chart|safe }}
+  </div>
 </div>
 {% endblock %}
