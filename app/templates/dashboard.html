@@ -1,17 +1,43 @@
 {% extends "base.html" %} {% block content %}
-<div class="dashboard">
-  <h2 class="page-title">Sales Dashboard</h2>
-  <div>
-    <h3 class="dash-title">Monthly Sales</h3>
-    {{ bar_chart|safe }}
+<div class="container">
+  <div class="dashboard">
+    <h2 class="page-title">Sales Dashboard</h2>
+    <form
+      action="{{ url_for('routes.switch_report', report_id=selected_report_id) }}"
+      method="POST"
+      class="report-form"
+    >
+      <label for="report" class="form-label">Select Report</label>
+      <select name="selected_report_id" id="report" class="form-select">
+        {% for report in current_user.reports %}
+        <option
+          value="{{ report.id }}"
+          {%
+          if
+          report.is_active
+          %}selected{%
+          endif
+          %}
+        >
+          {{ report.report_name }} (Uploaded on {{
+          report.date_uploaded.strftime('%Y-%m-%d') }})
+        </option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="form-button">Switch Report</button>
+    </form>
+    <div>
+      <h3 class="dash-title">Monthly Sales</h3>
+      {{ bar_chart|safe }}
+    </div>
+    <div>
+      <h3 class="dash-title">Sales Trends</h3>
+      {{ line_chart|safe }}
+    </div>
+    <div>
+      <h3 class="dash-title">Product Category Distribution</h3>
+      {{ pie_chart|safe }}
+    </div>
   </div>
-  <div>
-    <h3 class="dash-title">Sales Trends</h3>
-    {{ line_chart|safe }}
-  </div>
-  <div>
-    <h3 class="dash-title">Product Category Distribution</h3>
-    {{ pie_chart|safe }}
-  </div>
+  {% endblock %}
 </div>
-{% endblock %}

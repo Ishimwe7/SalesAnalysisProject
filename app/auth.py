@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user, login_required
 import os
 from werkzeug.utils import secure_filename
 from .models import User
@@ -97,6 +97,27 @@ def update_profile():
     try:
         db.session.commit()
         flash('Profile updated successfully!', 'success')
+    except:
+        db.session.rollback()
+        flash('An error occurred. Please try again.', 'error')
+
+    return redirect(url_for('auth.profile'))
+
+@auth.route('/profile/change_password', methods=['POST'])
+@login_required
+def change_password():
+    old_password = request.form.get('old_password')
+    new_password = request.form.get('new_password')
+
+    if not current_user.check_password(old_password):
+        flash('Old Password is incorrect', 'error')
+        return redirect(url_for('auth.profile'))
+
+    current_user.set_password(new_password)
+    
+    try:
+        db.session.commit()
+        flash('Password changed successfully!', 'success')
     except:
         db.session.rollback()
         flash('An error occurred. Please try again.', 'error')
