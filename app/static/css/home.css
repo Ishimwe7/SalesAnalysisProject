@@ -7,6 +7,7 @@
         overflow: hidden;
         height: 100vh;
         text-align: center;
+        margin-top: 100px;
     }
     .dashboard-title {
         color: #851432;

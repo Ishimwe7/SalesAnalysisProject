@@ -1,0 +1,129 @@
+{% extends 'base.html' %} {% block title %}Profile{% endblock %} {% block
+content %}
+<div class="profile-container">
+  <div class="profile-sidebar">
+    <div class="profile-picture-container">
+      <img
+        src="{{ url_for('static', filename='images/profile/' + current_user.profile_image) }}"
+        alt="Profile Image"
+        class="profile-picture"
+      />
+      <label for="profile_image" class="edit-icon">
+        <i class="fas fa-edit"></i>
+      </label>
+      <input
+        type="file"
+        id="profile_image"
+        name="profile_image"
+        class="file-input"
+        onchange="handleImageChange()"
+      />
+      <h3>I'm, {{ current_user.names }}</h3>
+    </div>
+  </div>
+
+  <div class="profile-details">
+    <form
+      id="profile-form"
+      method="POST"
+      enctype="multipart/form-data"
+      action="{{ url_for('auth.update_profile') }}"
+    >
+      <div class="profile-section">
+        <h2>Personal Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="names">Full Name</label>
+            <input
+              type="text"
+              id="names"
+              name="names"
+              value="{{ current_user.names }}"
+              class="form-control"
+              oninput="checkForChanges()"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="{{ current_user.email }}"
+              class="form-control"
+              oninput="checkForChanges()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group edit-buttons">
+        <button type="submit" class="btn btn-success" id="save-btn" disabled>
+          Save Changes
+        </button>
+      </div>
+    </form>
+    <form
+      id="profile-form"
+      method="POST"
+      enctype="multipart/form-data"
+      action="{{ url_for('auth.update_profile') }}"
+    >
+      <div class="profile-section">
+        <h2>Change Password</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="names">Old Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value="{{ current_user.password }}"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">New Password</label>
+            <input
+              type="password"
+              id="new_password"
+              name="new_password"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group edit-buttons">
+        <button type="submit" class="btn btn-success" id="save-btn">
+          Change Password
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const initialProfileState = {
+    names: "{{ current_user.names }}",
+    email: "{{ current_user.email }}",
+  };
+
+  function checkForChanges() {
+    const currentState = {
+      names: document.getElementById("names").value,
+      email: document.getElementById("email").value,
+    };
+
+    const hasChanges = Object.keys(initialProfileState).some(
+      (key) => initialProfileState[key] !== currentState[key]
+    );
+
+    document.getElementById("save-btn").disabled = !hasChanges;
+  }
+
+  function handleImageChange() {
+    document.getElementById("save-btn").disabled = false;
+  }
+</script>
+{% endblock %}

@@ -1,26 +1,43 @@
 {% extends "base.html" %} {% block content %}
-<h2>Sales Performance</h2>
-<div class="card-deck">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Total Sales</h5>
-      <p class="card-text">${{ total_sales }}</p>
+<div class="performance-container">
+  <h2 class="page-title">Sales Performance</h2>
+
+  <div class="gen-analytics">
+    <div class="sale performance-metric total-sales">
+      <span class="sale-icon"><i class="fas fa-dollar-sign"></i></span>
+      <h3 class="metric-title">Total Sales</h3>
+      <p class="metric-value">{{ total_sales }} Rwf</p>
+    </div>
+
+    <div class="sale performance-metric average-sales">
+      <span class="sale-icon"><i class="fas fa-chart-line"></i></span>
+      <h3 class="metric-title">Average Sales</h3>
+      <p class="metric-value">{{ average_sales }} Rwf</p>
+    </div>
+    <div class="sale performance-metric average-sales">
+      <span class="sale-icon"
+        ><i class="fas fa-arrow-alt-circle-down"></i
+      ></span>
+      <h3 class="metric-title">Min Sales value</h3>
+      <p class="metric-value">{{ min_value }} Rwf</p>
+    </div>
+    <div class="sale performance-metric average-sales">
+      <span class="sale-icon"><i class="fas fa-arrow-alt-circle-up"></i></span>
+      <h3 class="metric-title">Max Sales Value</h3>
+      <p class="metric-value">{{ max_value }} Rwf</p>
     </div>
   </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Average Sales</h5>
-      <p class="card-text">${{ average_sales }}</p>
-    </div>
+
+  <div class="performance-metric top-products">
+    <h3 class="metric-title">Top Selling Products</h3>
+    <ul class="product-list">
+      {% for product_id, total in top_selling_products.items() %}
+      <li class="product-item">
+        Product ID: <strong>{{ product_id }}</strong> - Sales:
+        <span>{{ total }}</span>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
-<h3>Top Selling Products</h3>
-<ul class="list-group">
-  {% for product, sales in top_selling_products.items() %}
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    {{ product }}
-    <span class="badge badge-primary badge-pill">${{ sales }}</span>
-  </li>
-  {% endfor %}
-</ul>
 {% endblock %}
