@@ -5,6 +5,7 @@ Flask==3.0.3
 Flask-Login==0.6.3
 Flask-SQLAlchemy==3.1.1
 greenlet==3.0.3
+gunicorn==23.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 joblib==1.4.2
@@ -18,6 +19,7 @@ python-dotenv==1.0.1
 pytz==2024.1
 scikit-learn==1.5.1
 scipy==1.14.0
+setuptools==72.2.0
 six==1.16.0
 SQLAlchemy==2.0.32
 tenacity==9.0.0
