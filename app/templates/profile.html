@@ -11,13 +11,6 @@ content %}
       <label for="profile_image" class="edit-icon">
         <i class="fas fa-edit"></i>
       </label>
-      <input
-        type="file"
-        id="profile_image"
-        name="profile_image"
-        class="file-input"
-        onchange="handleImageChange()"
-      />
       <h3>I'm, {{ current_user.names }}</h3>
     </div>
   </div>
@@ -29,12 +22,20 @@ content %}
       enctype="multipart/form-data"
       action="{{ url_for('auth.update_profile') }}"
     >
+      <input
+        type="file"
+        id="profile_image"
+        name="profile_image"
+        class="file-input"
+        onchange="handleImageChange()"
+      />
       <div class="profile-section">
         <h2>Personal Information</h2>
         <div class="form-row">
           <div class="form-group">
             <label for="names">Full Name</label>
             <input
+              required
               type="text"
               id="names"
               name="names"
@@ -46,6 +47,7 @@ content %}
           <div class="form-group">
             <label for="email">Email</label>
             <input
+              required
               type="email"
               id="email"
               name="email"
@@ -64,27 +66,27 @@ content %}
       </div>
     </form>
     <form
-      id="profile-form"
       method="POST"
       enctype="multipart/form-data"
-      action="{{ url_for('auth.update_profile') }}"
+      action="{{ url_for('auth.change_password') }}"
     >
       <div class="profile-section">
         <h2>Change Password</h2>
         <div class="form-row">
           <div class="form-group">
-            <label for="names">Old Password</label>
+            <label for="old_password">Old Password</label>
             <input
+              required
               type="password"
-              id="password"
-              name="password"
-              value="{{ current_user.password }}"
+              id="old_password"
+              name="old_password"
               class="form-control"
             />
           </div>
           <div class="form-group">
-            <label for="email">New Password</label>
+            <label for="new_password">New Password</label>
             <input
+              required
               type="password"
               id="new_password"
               name="new_password"
@@ -124,6 +126,7 @@ content %}
 
   function handleImageChange() {
     document.getElementById("save-btn").disabled = false;
+    document.getElementById("profile-form").submit();
   }
 </script>
 {% endblock %}

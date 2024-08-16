@@ -123,3 +123,7 @@ h3 {
 .btn-success:hover:not(:disabled) {
   background-color: #e63462; 
 }
+
+.profile-picture-container input{
+  background: none;
+}

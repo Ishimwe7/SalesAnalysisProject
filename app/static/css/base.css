@@ -155,11 +155,16 @@ body {
 
 
  .alert {
-    padding: 15px;
-    margin-bottom: 20px;
+    width: 300px;
+    min-height: 60px;
+    height: fit-content;
+    padding: 10px;
+    font-size: large;
+    position: absolute;
+    top: 300px;
+    right: 550px;
     border: 1px solid transparent;
     border-radius: 4px;
-    position: relative;
     text-align: center;
   }
   .alert-success {
@@ -172,14 +177,25 @@ body {
     background-color: #f8d7da;
     border-color: #f5c6cb;
   }
+  .alert p{
+    padding: 5px 0;
+  }
   .alert-info {
     color: #0c5460;
     background-color: #d1ecf1;
     border-color: #bee5eb;
   }
-  .alert p {
-    margin: 0;
-    padding-right: 30px;
+  .btn-close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    margin-bottom: 5px;
+  }
+  .btn-close:hover{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
   }
    .close-btn {
     position: absolute;
